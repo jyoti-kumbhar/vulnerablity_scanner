@@ -14,7 +14,6 @@ import os
 
 def generate_txt_report(
     target,
-    ports,
     findings,
     risk_level
 ):
@@ -48,11 +47,6 @@ def generate_txt_report(
 
         f.write("OPEN PORTS\n")
 
-        for port in ports:
-
-            f.write(
-                f"{port['port']} - {port['service']} - {port['version']}\n"
-            )
 
         f.write(
             "\nFINDINGS\n"
@@ -71,7 +65,6 @@ def generate_txt_report(
 
 def generate_pdf_report(
     target,
-    ports,
     findings,
     risk_level
 ):
@@ -119,15 +112,6 @@ def generate_pdf_report(
             styles["Heading2"]
         )
     )
-
-    for port in ports:
-
-        content.append(
-            Paragraph(
-                f"{port['port']} - {port['service']} - {port['version']}",
-                styles["Normal"]
-            )
-        )
 
     content.append(
         Spacer(1, 12)

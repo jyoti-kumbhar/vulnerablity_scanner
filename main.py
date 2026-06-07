@@ -1,4 +1,3 @@
-from network_scanner import scan_network
 from web_scanner import scan_website
 from database import save_scan
 from risk_engine import calculate_risk
@@ -8,51 +7,40 @@ from report_generator import (
 )
 
 print("=" * 50)
-print("Hybrid Vulnerability Scanner")
+print("WEB APPLICATION VULNERABILITY SCANNER")
 print("=" * 50)
 
-target_ip = input(
-    "\nEnter IP Address: "
-)
-
 target_url = input(
-    "Enter Website URL: "
+    "\nEnter Website URL: "
 )
 
-ports, network_findings = scan_network(
-    target_ip
-)
-
-web_findings = scan_website(
+findings = scan_website(
     target_url
 )
 
-all_findings = (
-    network_findings +
-    web_findings
+risk_data = calculate_risk(
+    findings
 )
-
-risk_data = calculate_risk(all_findings)
 
 risk = risk_data["risk_level"]
 
 generate_txt_report(
-    target_ip,
-    ports,
-    all_findings,
+    target_url,
+    findings,
     risk
 )
 
 generate_pdf_report(
-    target_ip,
-    ports,
-    all_findings,
+    target_url,
+    findings,
     risk
 )
+
 save_scan(
-    target_ip,
+    target_url,
     risk
 )
-print("\nScan Completed!")
+
+print("\n✅ Scan Completed!")
 print(f"Risk Level: {risk}")
 print("Reports saved in reports folder.")
