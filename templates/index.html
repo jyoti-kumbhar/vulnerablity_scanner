@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hybrid Vulnerability Scanner</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🛡️ Hybrid Vulnerability Scanner</h1>
+
+    <p class="subtitle">
+        Network & Web Security Assessment Tool
+    </p>
+
+    <div class="card">
+<div id="loading" style="display:none;">
+    ⏳ Scanning... Please wait
+</div>
+        <form action="/scan" method="POST">
+
+            <label>Target IP Address</label>
+
+            <input
+                type="text"
+                name="ip"
+                placeholder="127.0.0.1"
+                required
+            >
+
+            <label>Website URL</label>
+
+            <input
+                type="text"
+                name="url"
+                placeholder="https://example.com"
+                required
+            >
+
+            <button
+    type="submit"
+    onclick="document.getElementById('loading').style.display='block'"
+>
+    Start Security Scan
+</button>
+
+        </form>
+
+    </div>
+
+    {% if scan_complete %}
+
+    <div class="success">
+
+        ✅ Scan Completed Successfully
+
+    </div>
+
+    <div class="result-card">
+
+        <h2>
+            Risk Level:
+<span class="risk risk-{{ risk.lower() }}">
+    {{ risk }}
+</span>        </h2>
+
+    </div>
+
+    <div class="result-card">
+
+        <h3>Open Ports</h3>
+
+        <ul>
+        {% for port in ports %}
+            <li>
+                {{ port.port }}
+                -
+                {{ port.service }}
+                -
+                {{ port.version }}
+            </li>
+        {% endfor %}
+        </ul>
+
+    </div>
+
+    <div class="result-card">
+
+        <h3>Security Findings</h3>
+
+        <ul>
+        {% for item in findings %}
+            <li>{{ item }}</li>
+        {% endfor %}
+        </ul>
+
+    </div>
+
+    <div class="download">
+
+        <a href="/download">
+            Download PDF Report
+        </a>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>
