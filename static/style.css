@@ -94,13 +94,13 @@ li {
 .download a {
     text-decoration: none;
     color: white;
-    background: #2563eb;
+    background: #7238f8;
     padding: 12px 20px;
     border-radius: 8px;
 }
 
 .download a:hover {
-    background: #1d4ed8;
+    background: #b092f7;
 }
 #loading {
     text-align: center;
