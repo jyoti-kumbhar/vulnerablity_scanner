@@ -1,6 +1,6 @@
 # 🛡️ Web Application Vulnerability Scanner
-Website link: https://webapplication-vulnerablity-scanner.onrender.com/scan
-A Flask-based cybersecurity tool that analyzes web applications for common security weaknesses and generates detailed vulnerability reports.
+* Website link: https://webapplication-vulnerablity-scanner.onrender.com/scan
+* A Flask-based cybersecurity tool that analyzes web applications for common security weaknesses and generates detailed vulnerability reports.
 
 ## 🚀 Features
 
